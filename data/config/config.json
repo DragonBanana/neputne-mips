@@ -30,7 +30,7 @@
         "min_nodes": 5,
         "max_functions": 4,
         "min_functions": 4,
-        "max_tables": 10,
-        "min_tables": 10
+        "max_tables": 0,
+        "min_tables": 0
     }
 }
