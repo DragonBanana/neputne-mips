@@ -1,0 +1,231 @@
+{
+    "actual_cpu_allocations": {
+        "ns/fn_1": {
+            "node_a": true,
+            "node_b": true,
+            "node_c": true,
+            "node_d": true,
+            "node_e": true
+        },
+        "ns/fn_2": {
+            "node_a": true,
+            "node_b": true,
+            "node_c": true,
+            "node_d": true,
+            "node_e": true
+        },
+        "ns/fn_3": {
+            "node_a": true,
+            "node_b": true,
+            "node_c": true,
+            "node_d": true,
+            "node_e": true
+        },
+        "ns/fn_4": {
+            "node_a": true,
+            "node_b": true,
+            "node_c": true,
+            "node_d": true,
+            "node_e": true
+        }
+    },
+    "community": "community-test",
+    "cores_matrix": [
+        [
+            2,
+            4,
+            7,
+            4,
+            10
+        ],
+        [
+            7,
+            5,
+            10,
+            10,
+            7
+        ],
+        [
+            6,
+            7,
+            6,
+            1,
+            3
+        ],
+        [
+            9,
+            3,
+            4,
+            1,
+            4
+        ]
+    ],
+    "cores_per_req_matrix": [
+        [
+            4,
+            4,
+            5,
+            1,
+            2
+        ],
+        [
+            1,
+            1,
+            1,
+            2,
+            1
+        ],
+        [
+            3,
+            1,
+            5,
+            4,
+            3
+        ],
+        [
+            4,
+            3,
+            4,
+            1,
+            1
+        ]
+    ],
+    "function_max_delays": [
+        26,
+        21,
+        20,
+        29
+    ],
+    "function_memories": [
+        189,
+        159,
+        198,
+        148
+    ],
+    "function_names": [
+        "ns/fn_1",
+        "ns/fn_2",
+        "ns/fn_3",
+        "ns/fn_4"
+    ],
+    "namespace": "namespace-test",
+    "node_cores": [
+        36,
+        46,
+        35,
+        24,
+        44
+    ],
+    "node_delay_matrix": [
+        [
+            0,
+            15,
+            9,
+            7,
+            10
+        ],
+        [
+            15,
+            0,
+            6,
+            10,
+            19
+        ],
+        [
+            9,
+            6,
+            0,
+            16,
+            19
+        ],
+        [
+            7,
+            10,
+            16,
+            0,
+            9
+        ],
+        [
+            10,
+            19,
+            19,
+            9,
+            0
+        ]
+    ],
+    "node_memories": [
+        472,
+        451,
+        340,
+        279,
+        304
+    ],
+    "node_names": [
+        "node_a",
+        "node_b",
+        "node_c",
+        "node_d",
+        "node_e"
+    ],
+    "workload_coeff": 1,
+    "workload_on_destination_matrix": [
+        [
+            6,
+            0,
+            0,
+            0,
+            0
+        ],
+        [
+            8,
+            0,
+            1,
+            0,
+            0
+        ],
+        [
+            1,
+            1,
+            1,
+            4,
+            3
+        ],
+        [
+            5,
+            1,
+            0,
+            0,
+            2
+        ]
+    ],
+    "workload_on_source_matrix": [
+        [
+            2,
+            2,
+            0,
+            10,
+            2
+        ],
+        [
+            0,
+            4,
+            2,
+            0,
+            1
+        ],
+        [
+            1,
+            1,
+            2,
+            0,
+            2
+        ],
+        [
+            4,
+            2,
+            1,
+            0,
+            2
+        ]
+    ]
+}
