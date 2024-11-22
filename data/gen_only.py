@@ -21,10 +21,10 @@ data_generator = DataGenerator(auto_generate=auto_generate, seed=SEED)
 
 input_data, num_nodes, num_functions, num_tables = data_generator.generate_input_data(max_attempts=max_attempts)
 
-remove_keys = { 'write_per_req_matrix', 'table_sizes', 'table_names', 'v_old_matrix', 'solver', 'with_db', 'read_per_req_matrix', 'r_ft_matrix', 'node_storage' }
+remove_keys = {'actual_cpu_allocations', 'namespace', 'cores_matrix', 'workload_on_source_matrix', 'workload_on_destination_matrix', 'write_per_req_matrix', 'table_sizes', 'table_names', 'v_old_matrix', 'solver', 'with_db', 'read_per_req_matrix', 'r_ft_matrix', 'node_storage' }
 
 input_data = { k:v for k,v in input_data.items() if k not in remove_keys and 'gpu' not in k}
 
 
 with open(EXPORT_PATH, 'w') as f:
-    json.dump(input_data, f, sort_keys=True, indent=4)
+    json.dump(input_data, f, sort_keys=True, indent=2)
