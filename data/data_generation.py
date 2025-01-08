@@ -58,13 +58,13 @@ def generate_workload_on_destination_matrix(num_functions, num_nodes):
 def generate_delay_matrix(num_nodes):
     # Generate a symmetric delay matrix with random delays between 1 and 10
     delay_matrix = rg.random_delays(num_nodes)
-    print(pd.DataFrame(delay_matrix))
+    #print(pd.DataFrame(delay_matrix))
     return delay_matrix
 
 
 def generate_node_memories(num_nodes):
     # Generate random memory values for each node
-    return [random.randint(250, 550) for _ in range(num_nodes)]
+    return [random.randint(250, 2048) for _ in range(num_nodes)]
 
 
 def generate_node_storage(num_nodes):
@@ -76,6 +76,35 @@ def generate_node_cores(num_nodes):
     # Generate random core values between for each node
     return [random.randint(20, 50) for _ in range(num_nodes)]
 
+def split_cores(min_total_cores, num_nodes):
+
+    # total_cores is between min_total_cores and 1.5*min_total_cores
+    total_cores = int(min_total_cores * (1 + random.randint(0, 50)/100))
+
+    # Step 1: Generate random values using normal distribution
+    random_values = np.random.normal(loc=1.0, scale=0.5, size=num_nodes)
+    
+    # Step 2: Ensure all values are positive
+    random_values = np.abs(random_values)
+    
+    # Step 3: Normalize to sum to (total_cores - num_nodes)
+    remaining_cores = total_cores - num_nodes
+    scaled_values = random_values / sum(random_values) * remaining_cores
+    
+    # Step 4: Allocate at least one core to each node
+    allocation = [1] * num_nodes
+    for i in range(num_nodes):
+        allocation[i] += int(round(scaled_values[i]))
+    
+    # Step 5: Adjust in case of rounding errors to match total_cores
+    difference = total_cores - sum(allocation)
+    for _ in range(abs(difference)):
+        if difference > 0:
+            allocation[np.random.randint(0, num_nodes)] += 1
+        elif difference < 0:
+            allocation[np.random.randint(0, num_nodes)] -= 1
+    
+    return allocation
 
 def generate_function_memories(num_functions):
     return [random.randint(125, 200) for _ in range(num_functions)]
@@ -118,9 +147,9 @@ def generate_v_old_matrix(num_nodes, num_tables):
         for j in range(num_tables):
             if matrix[i][j] == -1:
                 matrix[i][j] = 0
-    print("Old table locations: ")
-    for row in matrix:
-        print(row)
+    #print("Old table locations: ")
+    #for row in matrix:
+    #  print(row)
     return matrix
 
 
@@ -209,7 +238,6 @@ class DataGenerator:
             node_delay_matrix = generate_delay_matrix(num_nodes)
             node_memories = generate_node_memories(num_nodes)
             node_storage = generate_node_storage(num_nodes)
-            node_cores = generate_node_cores(num_nodes)
 
             # Functions data
             function_names = self.generate_function_names()
@@ -234,14 +262,21 @@ class DataGenerator:
             r_ft_matrix = generate_r_ft_matrix(num_functions, num_tables, read_per_req_matrix)
 
             # DEBUG
-            print("R_FT matrix:\n", r_ft_matrix)
+            #print("R_FT matrix:\n", r_ft_matrix)
 
             # Generate and check if the total workload can be served by the community
             attempts = 0
-            total_cores = sum(node_cores)
-            print("Total cores: ", total_cores)
+            
 
             core_per_req_matrix = generate_core_per_req_matrix(num_functions, num_nodes)
+            
+            min_total_cores = get_cores_needed(core_per_req_matrix, workload_on_source_matrix) 
+
+            node_cores = split_cores(min_total_cores, num_nodes)
+            
+            total_cores = sum(node_cores)
+            #print("Total cores: ", total_cores)
+
             while check_workload(core_per_req_matrix, total_cores, workload_on_source_matrix):
                 core_per_req_matrix = generate_core_per_req_matrix(num_functions, num_nodes)
                 attempts += 1

@@ -20,16 +20,16 @@
     "workload_coeff": 1,
     "community": "community-test",
     "namespace": "namespace-test",
-    "max_attempts": 20,
+    "max_attempts": 1000,
     "request": {
         "method": "get",
         "url": "http://10.75.4.148:5000/"
     },
     "data_generation": {
-        "max_nodes": 5,
-        "min_nodes": 5,
-        "max_functions": 4,
-        "min_functions": 4,
+        "max_nodes": 3,
+        "min_nodes": 3,
+        "max_functions": 5,
+        "min_functions": 5,
         "max_tables": 0,
         "min_tables": 0
     }
