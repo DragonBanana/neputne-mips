@@ -174,8 +174,8 @@ def generate_write_per_req_matrix(num_functions, num_tables):
 
 
 def generate_workload_on_source_matrix(num_functions, num_nodes):
-    max_value = 30
-    decay_rate = 0.5
+    max_value = 300
+    decay_rate = 0.01
     elements = list(range(max_value + 1))
     weights = exponential_weights(decay_rate, max_value)
     return [

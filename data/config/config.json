@@ -26,10 +26,10 @@
         "url": "http://10.75.4.148:5000/"
     },
     "data_generation": {
-        "max_nodes": 3,
-        "min_nodes": 3,
-        "max_functions": 5,
-        "min_functions": 5,
+        "max_nodes": 30,
+        "min_nodes": 30,
+        "max_functions": 50,
+        "min_functions": 50,
         "max_tables": 0,
         "min_tables": 0
     }
